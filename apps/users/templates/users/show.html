@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Displaying User #{{users.id}}</h1>
+
+    <h2>{{users.name}}</h2>
+    <p>Email: {{users.email}}</p>
+    <p>Joined: {{users.created_at}}</p>
+    <br>
+    <a href="/users/{{users.id}}/edit/">Edit</a> <a href="/users/{{users.id}}/destroy/">Delete</a>
+    <br>
+    <a href="/users/">Back to Users</a>
+
+</body>
+</html>

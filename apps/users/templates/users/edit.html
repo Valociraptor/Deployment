@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit  Existing User #{{users.id}}</h1>
+
+    <h2>{{users.name}}</h2>
+    <p>Email: {{users.email}}</p>
+    <p>Joined: {{users.created_at}}</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+
+    {% endif %}
+
+    <form action="/users/{{users.id}}/update/", method='POST'>
+        {% csrf_token %} 
+        New Name: <input type="textarea" name="name">
+        New Email: <input type="textarea" name="email">
+        <input type="submit" value="Update">
+    </form>
+    <br>
+    <a href="/users/">Back to Users</a>
+</body>
+</html>

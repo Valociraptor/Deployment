@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Courses!</h1>
+
+    <h2>Add a new Course:</h2>
+    <form action="/courses/create", method="POST">
+        {% csrf_token %} 
+        Name: <input type="text" name="name">
+        Description:<textarea name="desc"></textarea><br>
+        <input type="submit" value="Add Course">    
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <br>
+    <br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+        {%for course in courses%}
+
+            <tr>
+                <td>{{course.id}}</td>
+                <td>{{course.name}}</td>
+                <td>{{course.desc}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href="/courses/delete/{{course.id}}">Delete</a></td>
+            </tr>
+
+        {%endfor%}
+    </table>
+</body>
+</html>

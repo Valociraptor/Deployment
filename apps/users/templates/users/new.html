@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a new User</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+
+    {% endif %}
+    <form action="/users/create/", method='POST'>
+        {% csrf_token %} 
+        Name: <input type="textarea" name="name">
+        Email: <input type="textarea" name="email">
+        <input type="submit" value="Create New User">
+    </form>
+    <br>
+    <a href="/users/">Back to Users</a>
+</body>
+</html>
